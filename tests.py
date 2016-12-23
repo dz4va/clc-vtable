@@ -11,7 +11,7 @@ from table_formatter import TableFormatter
 class TestMethods(unittest.TestCase):
 
     def test_FormatVariant_snv(self):
-        file_info = "FT_74_6955.xlsx row 25"
+        file_info = "sample_data.xlsx row 25"
         variant_type = "SNV"
         reference = 'G'
         allele = 'A'
@@ -24,7 +24,7 @@ class TestMethods(unittest.TestCase):
             crc), "G150A")
 
     def test_FormatVariant_snv_contains_illegal(self):
-        file_info = "FT_74_6955.xlsx row 25"
+        file_info = "sample_data.xlsx row 25"
         variant_type = "SNV"
         reference = 'G'
         allele = 'A'
@@ -38,7 +38,7 @@ class TestMethods(unittest.TestCase):
             "G>A_error: YP_513095.1:c.[1delA];YP_513094.1:c.[590_591delAA]")
 
     def test_FormatVariant_insertion(self):
-        file_info = "FT_74_6955.xlsx row 25"
+        file_info = "sample_data.xlsx row 25"
         variant_type = "Insertion"
         reference = '-'
         allele = 'C'
@@ -51,7 +51,7 @@ class TestMethods(unittest.TestCase):
             crc), "Cins293")
 
     def test_FormatVariant_insertion_contains_illegal(self):
-        file_info = "FT_74_6955.xlsx row 25"
+        file_info = "sample_data.xlsx row 25"
         variant_type = "Insertion"
         reference = '-'
         allele = 'C'
@@ -65,7 +65,7 @@ class TestMethods(unittest.TestCase):
             "Cins_error: YP_513095.1:c.[1delA];YP_513094.1:c.[590_591delAA]")
 
     def test_FormatVariant_deletion(self):
-        file_info = "FT_74_6955.xlsx row 25"
+        file_info = "sample_data.xlsx row 25"
         variant_type = "Deletion"
         reference = 'A'
         allele = '-'
@@ -78,7 +78,7 @@ class TestMethods(unittest.TestCase):
             crc), "Adel907")
 
     def test_FormatVariant_deletion_contains_illegal(self):
-        file_info = "FT_74_6955.xlsx row 25"
+        file_info = "sample_data.xlsx row 25"
         variant_type = "Deletion"
         reference = 'A'
         allele = '-'
