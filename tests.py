@@ -23,6 +23,19 @@ class TestMethods(unittest.TestCase):
             allele,
             crc), "G150A")
 
+    def test_FormatVariant_snv_nocrc(self):
+        file_info = "sample_data.xlsx row 25"
+        variant_type = "SNV"
+        reference = 'G'
+        allele = 'A'
+        crc = ''
+        self.assertEqual(TableFormatter.FormatVariant(
+            file_info,
+            variant_type,
+            reference,
+            allele,
+            crc), "G>A")
+
     def test_FormatVariant_snv_contains_illegal(self):
         file_info = "sample_data.xlsx row 25"
         variant_type = "SNV"
