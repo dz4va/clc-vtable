@@ -129,33 +129,35 @@ class TestMethods(unittest.TestCase):
 
     def test_GetIntFromString(self):
         val = "Abgdfsb dasdasdw adsad dasd78dasdsd"
-        self.assertEqual(TableFormatter.GetIntFromString(
-            val), "78")
+        self.assertEqual(TableFormatter.GetIntFromString(val), "78")
 
     def test_GetIntFromString_doesntcontain(self):
         val = "dasdasdadsdsdad dasdasdas das dsada"
-        self.assertEqual(TableFormatter.GetIntFromString(
-            val), "")
+        self.assertEqual(TableFormatter.GetIntFromString(val), "")
 
     def test_CodonPos_three(self):
         val = "A288C"
-        self.assertEqual(TableFormatter.CodonPos(
-            val), "3")
+        self.assertEqual(TableFormatter.CodonPos(val), "3")
 
     def test_CodonPos_two(self):
         val = "A287C"
-        self.assertEqual(TableFormatter.CodonPos(
-            val), "2")
+        self.assertEqual(TableFormatter.CodonPos(val), "2")
 
     def test_CodonPos_one(self):
         val = "A286C"
-        self.assertEqual(TableFormatter.CodonPos(
-            val), "1")
+        self.assertEqual(TableFormatter.CodonPos(val), "1")
 
     def test_CodonPos_none(self):
         val = "A>C"
-        self.assertEqual(TableFormatter.CodonPos(
-            val), "")
+        self.assertEqual(TableFormatter.CodonPos(val), "")
+
+    def test_AminoAcidChange_contains(self):
+        aac = "YP_512823.1:p.Ser35Tyr"
+        self.assertEqual(TableFormatter.AminoAcidChange(aac), "Ser35Tyr")
+
+    def test_AminoAcidChange_doesnt_contain(self):
+        aac = ""
+        self.assertEqual(TableFormatter.AminoAcidChange(aac), "")
 
 
 if __name__ == "__main__":

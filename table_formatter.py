@@ -209,9 +209,13 @@ class TableFormatter(object):
 
         return final
 
+# TODO: Change implementation so that it returns error value not raising
+# exception
+
     @staticmethod
     def AminoAcidChange(aac):
-        """Get Amino Acid Change if it exists
+        """Get Amino Acid Change if it exists Ser35Tyr
+
 
         Args:
             aac (string): Amino Acid Change value

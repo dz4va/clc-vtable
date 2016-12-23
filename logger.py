@@ -23,15 +23,15 @@ class Logger(object):
         log.basicConfig(filename=FILE_WARNING, level=log.WARNING)
         log.warning(warning_message)
 
-    @staticmethod
-    def Error(error_message):
-        """Log the error message to the log file
+    # @staticmethod
+    # def Error(error_message):
+    #     """Log the error message to the log file
 
-        Args:
-            error_message (string): Error Message to be written
+    #     Args:
+    #         error_message (string): Error Message to be written
 
-        Returns:
-            None: None
-        """
-        log.basicConfig(filename=FILE_ERROR, level=log.ERROR)
-        log.error(error_message)
+    #     Returns:
+    #         None: None
+    #     """
+    #     log.basicConfig(filename=FILE_ERROR, level=log.ERROR)
+    #     log.error(error_message)
