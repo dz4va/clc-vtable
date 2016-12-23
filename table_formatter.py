@@ -15,9 +15,6 @@ from config import *
 from table_formatter_exceptions import ValidationException
 from logger import Logger
 
-# Constants
-FILE_CONFIG = "config_table_formatter.yaml"
-
 
 class TableFormatter(object):
     """Table Formatter class that contains methods for formatting"""
