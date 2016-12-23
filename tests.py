@@ -6,6 +6,7 @@
 """
 import unittest
 from table_formatter import TableFormatter
+from table_formatter_exceptions import ValidationException
 
 
 class TestMethods(unittest.TestCase):
@@ -158,6 +159,15 @@ class TestMethods(unittest.TestCase):
     def test_AminoAcidChange_doesnt_contain(self):
         aac = ""
         self.assertEqual(TableFormatter.AminoAcidChange(aac), "")
+
+    def test_AminoAcidChange_exception(self):
+        aac = "YP_512823.1:p.Ser35Tyr.[Ser35Tyr]"
+        try:
+            res = TableFormatter.AminoAcidChange(aac)
+            print(res)
+        except ValidationException as aac_error:
+            self.assertEqual(aac_error.errors,
+                             "_error: YP_512823.1:p.Ser35Tyr.[Ser35Tyr]")
 
 
 if __name__ == "__main__":
