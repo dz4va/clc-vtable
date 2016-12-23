@@ -163,8 +163,7 @@ class TestMethods(unittest.TestCase):
     def test_AminoAcidChange_exception(self):
         aac = "YP_512823.1:p.Ser35Tyr.[Ser35Tyr]"
         try:
-            res = TableFormatter.AminoAcidChange(aac)
-            print(res)
+            TableFormatter.AminoAcidChange(aac)
         except ValidationException as aac_error:
             self.assertEqual(aac_error.errors,
                              "_error: YP_512823.1:p.Ser35Tyr.[Ser35Tyr]")
