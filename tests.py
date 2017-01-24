@@ -10,7 +10,7 @@ from table_formatter_exceptions import ValidationException
 
 
 class TestMethods(unittest.TestCase):
-
+    # TableFormatter Tests
     def test_FormatVariant_snv(self):
         file_info = "sample_data.xlsx row 25"
         variant_type = "SNV"
