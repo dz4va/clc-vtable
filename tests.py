@@ -7,6 +7,11 @@
 import unittest
 from table_formatter import TableFormatter
 from table_formatter_exceptions import ValidationException
+from clc_vtable import *
+from argparser import *
+from table_variant import *
+from table_variant_reader import *
+from table_variant_writer import *
 
 
 class TestMethods(unittest.TestCase):

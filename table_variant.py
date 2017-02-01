@@ -6,6 +6,8 @@
 # How it works:
     TODO: Explain
 """
+import config as cfg
+from collections import OrderedDict
 
 
 class TableVariant(object):
@@ -35,18 +37,39 @@ class TableVariant(object):
         Args:
             **kwargs (dict): Dictionary of the keyword arguments
         """
-        self.reference_position = kwargs["reference_position"]
-        self.variant_type = kwargs["variant_type"]
-        self.length = kwargs["length"]
-        self.reference = kwargs["reference"]
-        self.allele = kwargs["allele"]
-        self.linkage = kwargs["linkage"]
-        self.zygosity = kwargs["zygosity"]
-        self.allele_count = kwargs["allele_count"]
-        self.coverage = kwargs["coverage"]
-        self.frequency = kwargs["frequency"]
-        self.forward_reverse_balance = kwargs["forward_reverse_balance"]
-        self.average_quality = kwargs["average_quality"]
-        self.overlapping_annotations = kwargs["overlapping_annotations"]
-        self.coding_region_change = kwargs["coding_region_change"]
-        self.amino_acid_change = kwargs["amino_acid_change"]
+        self.reference_position = kwargs[cfg.V_REFPOS]
+        self.variant_type = kwargs[cfg.V_TYPE]
+        self.length = kwargs[cfg.V_LENGTH]
+        self.reference = kwargs[cfg.V_REF]
+        self.allele = kwargs[cfg.V_ALLELE]
+        self.linkage = kwargs[cfg.V_LINKAGE]
+        self.zygosity = kwargs[cfg.V_ZYGOSITY]
+        self.allele_count = kwargs[cfg.V_ALCOUNT]
+        self.coverage = kwargs[cfg.V_COV]
+        self.frequency = kwargs[cfg.V_FREQ]
+        self.forward_reverse_balance = kwargs[cfg.V_FR_BAL]
+        self.average_quality = kwargs[cfg.V_AVG_QUAL]
+        self.overlapping_annotations = kwargs[cfg.V_ANOT]
+        self.coding_region_change = kwargs[cfg.V_CRC]
+        self.amino_acid_change = kwargs[cfg.V_AAC]
+
+    def toDict(self):
+        variant_dict = OrderedDict()
+
+        variant_dict[cfg.V_REFPOS] = self.reference_position
+        variant_dict[cfg.V_TYPE] = self.variant_type
+        variant_dict[cfg.V_LENGTH] = self.length
+        variant_dict[cfg.V_REF] = self.reference
+        variant_dict[cfg.V_ALLELE] = self.allele
+        variant_dict[cfg.V_LINKAGE] = self.linkage
+        variant_dict[cfg.V_ZYGOSITY] = self.zygosity
+        variant_dict[cfg.V_ALCOUNT] = self.allele_count
+        variant_dict[cfg.V_COV] = self.coverage
+        variant_dict[cfg.V_FREQ] = self.frequency
+        variant_dict[cfg.V_FR_BAL] = self.forward_reverse_balance
+        variant_dict[cfg.V_AVG_QUAL] = self.average_quality
+        variant_dict[cfg.V_ANOT] = self.overlapping_annotations
+        variant_dict[cfg.V_CRC] = self.coding_region_change
+        variant_dict[cfg.V_AAC] = self.amino_acid_change
+
+        return variant_dict

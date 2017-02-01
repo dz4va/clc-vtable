@@ -88,30 +88,3 @@ class VTableArgs(object):
         self.format_mode = format_mode
         self.input_file_or_directory = input_file_or_directory
         self.output_file_or_directory = output_file_or_directory
-
-    def directories_valid(self):
-        """Validates input and output file or directory paths to be valid
-        diretories and not equal
-
-        Returns:
-            bool: True if directories are valid and paths aren't same
-        """
-        print(os.path.isdir(self.input_file_or_directory))
-        print(os.path.isdir(self.output_file_or_directory))
-        # TODO: Fails here i thought isdir returned if the directory path
-        # string was valid for existing and creation
-        return (os.path.isdir(self.input_file_or_directory) and
-                os.path.isdir(self.output_file_or_directory) and
-                self.input_file_or_directory != self.output_file_or_directory)
-
-    def files_valid(self):
-        """Validates input and output file or directory paths to be valid
-        files and not equal
-
-        Returns:
-            bool: True if files are valid and names aren't same
-        """
-        # TODO: Same here maybe we have to create it if doesn't exist
-        return (os.path.isfile(self.input_file_or_directory) and
-                os.path.isfile(self.output_file_or_directory) and
-                self.input_file_or_directory != self.output_file_or_directory)

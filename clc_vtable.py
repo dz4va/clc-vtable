@@ -1,6 +1,7 @@
 """
-# CLC Table variant data reader class uses given openpyxl
-# sheet row to read data and return TableVariant object
+# CLC variants table formatter contains main that should be run.
+# Inludes two modes. Formatting for single file and formatting on a directory.
+# Help: python3 clc_vtable.py -h
 # Author: George Dzavashvili
 # Email: dzavashviligeorge@gmail.com
 # Twitter: @redpix_
@@ -11,41 +12,54 @@
 # storing everything in one new excel file created in the output directory
 # then implement iterating over the files contained in a given input
 # directory and formatting, saving them in output directory
+import os
+import errno
+# import _thread
 import openpyxl as xl
 from argparser import VTableArgparser
 from table_variant import TableVariant
 from table_variant_reader import TableVariantReader
 from table_variant_writer import TableVariantWriter
-# import pprint
 
 
-def format_directory(input_directory, output_directory):
-    print("Starting with directory...")
-    print(input_directory)
-    print(output_directory)
-    # TODO: implement this after format_single_file because this will consist
-    # mostly looping over the files and calling format single file, thus
-    # format_single_file has to do most of the work maybe we could even run
-    # concurrently. Let's see.
+def format_directory(input_dir, output_dir):
+    print("\nDirectory Validations Successful!")
+    print("Starting directory formatting. At: " + input_dir +
+          " Outputting to: " + output_dir)
+
+    for input_file in os.listdir(input_dir):
+        if input_file[0] != '.' and input_file.endswith(".xlsx"):
+            # TODO: implement multithreading for many xlsx files
+            # not working threaded version might try threading module instead
+            # making thread class for single file formatter
+            # try:
+            #     _thread.start_new_thread(format_single_file, (
+            #         os.path.abspath(input_file),
+            #         os.path.abspath(os.path.join(output_dir, input_file))
+            #     ))
+            # except:
+            #     print("Error: Unable to start thread.")
+            format_single_file(
+                os.path.abspath(os.path.join(input_dir, input_file)),
+                os.path.abspath(os.path.join(output_dir, input_file)))
 
 
 def format_single_file(input_file, output_file):
-    print("Starting with single file...")
-    print(input_file)
-    print(output_file)
-    # TODO: implement this first to have thread safe code only for concurrent
-    # running superpowers then this should be called on all the files inside
-    # the directory and a single file
+    print("\nFormatting file: " + input_file +
+          "\nSave file: " + output_file)
 
-    # input_workbook = xl.load_workbook("test_data/test.xlsx")
-    # # output_workbook = xl.Workbook()
+    # Create variant reader and input_workbook
+    variant_reader = TableVariantReader(input_file)
 
-    # input_workbook_sheet = input_workbook.active
-    # # input_workbook_row_data = {}
+    # Create variant writer and output_workbook
+    variant_writer = TableVariantWriter(output_file)
 
-    # for row in range(2, input_workbook_sheet.max_row + 1):
-    #     for col in range(1, input_workbook_sheet.max_column + 1):
-    #         print(input_workbook_sheet.cell(row=row, column=col).value)
+    variant_writer.write_header()
+    for row in range(2, 3):
+        table_variant = variant_reader.read_variant(row)
+        variant_writer.write(table_variant, row)
+
+    variant_writer.save()
 
 
 def main():
@@ -54,22 +68,37 @@ def main():
     args = VTableArgparser("python3 clc_vtable.py").fill().parseAsVTableArgs()
 
     if (args.format_mode):
-        # If input file or directory is a directory and output file or
-        # directory is also a directory and they don't match run format
-        # directory
-        if args.directories_valid():
-            format_directory(args.input_file_or_directory,
-                             args.output_file_or_directory)
+        input_dir = args.input_file_or_directory
+        output_dir = args.output_file_or_directory
+
+        print("Table formatter started in directory formatting mode with:\n" +
+              "Input Directory \n\t- " + input_dir +
+              "\nOutput Directory \n\t- " + output_dir + "\n")
+
+        if os.path.isdir(input_dir):
+            if input_dir != output_dir:
+                try:
+                    os.mkdir(output_dir)
+                    print("Output directory created. At: " + output_dir)
+                except OSError as e:
+                    if e.errno == errno.EEXIST:
+                        print("Output directory already exists. At: " +
+                              output_dir)
+                finally:
+                    if len(os.listdir(output_dir)) == 0:
+                        # print("Output directory is empty.")
+                        format_directory(input_dir, output_dir)
+                    else:
+                        print("Ouptut directory is not empty." +
+                              " Please, try again")
+            else:
+                print("Output and input directories can't be equal")
         else:
-            print("Directory validations unsuccessful! Please try again.")
+            print("Given input directory is incorrect. Please, try again.")
     else:
-        # If the input file or directory is a file and output file or directory
-        # is also a file and they don't match run format single file
-        if args.files_valid():
-            format_single_file(args.input_file_or_directory,
-                               args.output_file_or_directory)
-        else:
-            print("File name validations unsuccessful! Please try again.")
+        input_file = args.input_file_or_directory
+        output_file = args.output_file_or_directory
+        format_single_file(input_file, output_file)
 
 
 if __name__ == "__main__":
