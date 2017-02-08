@@ -53,21 +53,21 @@ class TableVariant(object):
         self.coding_region_change = kwargs[cfg.V_CRC]
         self.amino_acid_change = kwargs[cfg.V_AAC]
 
-    def toDict(self):
+    def get_as_dict(self):
         variant_dict = OrderedDict()
 
         variant_dict[cfg.V_REFPOS] = self.reference_position
         variant_dict[cfg.V_TYPE] = self.variant_type
-        variant_dict[cfg.V_LENGTH] = self.length
+        # variant_dict[cfg.V_LENGTH] = self.length
         variant_dict[cfg.V_REF] = self.reference
         variant_dict[cfg.V_ALLELE] = self.allele
-        variant_dict[cfg.V_LINKAGE] = self.linkage
-        variant_dict[cfg.V_ZYGOSITY] = self.zygosity
-        variant_dict[cfg.V_ALCOUNT] = self.allele_count
-        variant_dict[cfg.V_COV] = self.coverage
+        # variant_dict[cfg.V_LINKAGE] = self.linkage
+        # variant_dict[cfg.V_ZYGOSITY] = self.zygosity
+        # variant_dict[cfg.V_ALCOUNT] = self.allele_count
+        # variant_dict[cfg.V_COV] = self.coverage
         variant_dict[cfg.V_FREQ] = self.frequency
-        variant_dict[cfg.V_FR_BAL] = self.forward_reverse_balance
-        variant_dict[cfg.V_AVG_QUAL] = self.average_quality
+        # variant_dict[cfg.V_FR_BAL] = self.forward_reverse_balance
+        # variant_dict[cfg.V_AVG_QUAL] = self.average_quality
         variant_dict[cfg.V_ANOT] = self.overlapping_annotations
         variant_dict[cfg.V_CRC] = self.coding_region_change
         variant_dict[cfg.V_AAC] = self.amino_acid_change
