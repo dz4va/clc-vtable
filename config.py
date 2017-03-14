@@ -1,4 +1,4 @@
-from collections import OrderedDict
+# from collections import OrderedDict
 
 SNP = "SNV"
 INSERTION = "Insertion"

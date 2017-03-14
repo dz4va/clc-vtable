@@ -23,5 +23,7 @@ class TableVariantWriter(ExcelWriter):
 
     @tc.typecheck
     def get_formatted(self, table_variant: TableVariant):
-        # variant = table_variant.get_as_dict()
-        pass
+        variant = table_variant.get_as_dict()
+        formatted = []
+        # here we format it
+        return formatted

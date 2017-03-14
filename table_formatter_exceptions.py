@@ -8,10 +8,7 @@
 
 class ValidationException(Exception):
     def __init__(self, message, error_str):
-
-        # Call the base class constructor with the message
         super(ValidationException, self).__init__(message)
 
-        # Error String
         self.errors = error_str
         self.message = message

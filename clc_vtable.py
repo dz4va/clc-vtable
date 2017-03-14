@@ -56,9 +56,14 @@ def format_single_file(input_file, output_file):
 
     variant_writer.write_header()
     for row in range(2, variant_reader.active_sheet.max_row + 1):
+        # Read in table_variant
         table_variant = variant_reader.read_variant(row)
-        variant_writer.write(table_variant, row)
+        # Format using variant_writer
+        formatted_table_variant = variant_writer.get_formatted(table_variant)
+        # Write variant into the desired row
+        variant_writer.write(formatted_table_variant, row)
 
+    # Save output file
     variant_writer.save()
 
 

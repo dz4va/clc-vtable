@@ -23,7 +23,7 @@ class ExcelWriter(object):
     @tc.typecheck
     def fill_row(self, row: int, data_columns: tc.list_of[str]):
         for column, col_str in enumerate(self.data_columns):
-            self.set_cell_value(1, column, col_str)
+            self.set_cell_value(row, column, col_str)
 
     @tc.typecheck
     def write_header(self, header_columns: tc.list_of[str]):

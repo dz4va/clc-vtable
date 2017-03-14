@@ -17,13 +17,10 @@ class TableVariantReader(object):
     """
 
     def __init__(self, file_name):
-        # Create workbook
         self.workbook = xl.load_workbook(file_name)
-        # Set active sheet
         self.active_sheet = self.workbook.active
 
     def get_value(self, row, col):
-        # print(type(self.active_sheet.cell(row=row, column=col).value))
         return self.active_sheet.cell(row=row, column=col).value
 
     def read_variant(self, row):
