@@ -60,8 +60,9 @@ def format_single_file(input_file, output_file):
         table_variant = variant_reader.read_variant(row)
         # Format using variant_writer
         formatted_table_variant = variant_writer.get_formatted(table_variant)
+        print(formatted_table_variant)
         # Write variant into the desired row
-        variant_writer.write(formatted_table_variant, row)
+        # variant_writer.write(formatted_table_variant, row)
 
     # Save output file
     variant_writer.save()

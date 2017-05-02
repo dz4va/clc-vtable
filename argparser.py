@@ -6,7 +6,7 @@
 # How it works:
     TODO: Explain
 """
-import os
+# import os
 import argparse
 
 
@@ -15,7 +15,7 @@ class VTableArgparser(object):
         self.parser = argparse.ArgumentParser(description)
 
     def fill(self):
-        self.parser.add_argument("-d", "--format_mode",
+        self.parser.add_argument("-d", "--format_dir",
                                  action="store_true",
                                  help="Run formatter on a directory or file.")
         self.parser.add_argument("-i", "--input_file_or_directory",
