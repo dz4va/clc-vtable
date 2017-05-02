@@ -6,46 +6,15 @@
 # How it works:
     TODO: Explain
 """
-import config as cfg
-from collections import OrderedDict
 
 
 class TableVariant(object):
 
     def __init__(self, **kwargs):
-        self.reference_position = kwargs[cfg.V_REFPOS]
-        self.variant_type = kwargs[cfg.V_TYPE]
-        self.length = kwargs[cfg.V_LENGTH]
-        self.reference = kwargs[cfg.V_REF]
-        self.allele = kwargs[cfg.V_ALLELE]
-        self.linkage = kwargs[cfg.V_LINKAGE]
-        self.zygosity = kwargs[cfg.V_ZYGOSITY]
-        self.allele_count = kwargs[cfg.V_ALCOUNT]
-        self.coverage = kwargs[cfg.V_COV]
-        self.frequency = kwargs[cfg.V_FREQ]
-        self.forward_reverse_balance = kwargs[cfg.V_FR_BAL]
-        self.average_quality = kwargs[cfg.V_AVG_QUAL]
-        self.overlapping_annotations = kwargs[cfg.V_ANOT]
-        self.coding_region_change = kwargs[cfg.V_CRC]
-        self.amino_acid_change = kwargs[cfg.V_AAC]
+        self.variant_dict = kwargs
 
-    def get_as_dict(self):
-        variant_dict = OrderedDict()
+    def __getitem__(self, key):
+        return self.variant_dict[key]
 
-        variant_dict[cfg.V_REFPOS] = self.reference_position
-        variant_dict[cfg.V_TYPE] = self.variant_type
-        # variant_dict[cfg.V_LENGTH] = self.length
-        variant_dict[cfg.V_REF] = self.reference
-        variant_dict[cfg.V_ALLELE] = self.allele
-        # variant_dict[cfg.V_LINKAGE] = self.linkage
-        # variant_dict[cfg.V_ZYGOSITY] = self.zygosity
-        # variant_dict[cfg.V_ALCOUNT] = self.allele_count
-        # variant_dict[cfg.V_COV] = self.coverage
-        variant_dict[cfg.V_FREQ] = self.frequency
-        # variant_dict[cfg.V_FR_BAL] = self.forward_reverse_balance
-        # variant_dict[cfg.V_AVG_QUAL] = self.average_quality
-        variant_dict[cfg.V_ANOT] = self.overlapping_annotations
-        variant_dict[cfg.V_CRC] = self.coding_region_change
-        variant_dict[cfg.V_AAC] = self.amino_acid_change
-
-        return variant_dict
+    def set_file_info(self, file_info):
+        self.file_info = file_info

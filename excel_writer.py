@@ -18,10 +18,11 @@ class ExcelWriter(object):
 
     def fill_row(self, row, data_columns):
         for column, col_str in enumerate(data_columns):
-            self.set_cell_value(row, column, col_str)
+            self.set_cell_value(row, column + 1, data_columns[col_str])
 
     def write_header(self, header_columns):
-        self.fill_row(1, header_columns)
+        for column, value in enumerate(header_columns):
+            self.set_cell_value(1, column + 1, value)
 
     def write_data_row(self, data_columns, row):
         self.fill_row(row, data_columns)

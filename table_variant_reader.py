@@ -13,9 +13,7 @@ from table_variant import TableVariant
 
 
 class TableVariantReader(object):
-    """Summary
-    """
-
+    
     def __init__(self, file_name):
         self.workbook = xl.load_workbook(file_name)
         self.active_sheet = self.workbook.active

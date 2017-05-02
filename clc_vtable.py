@@ -15,11 +15,13 @@
 import os
 import errno
 # import _thread
+import config as cfg
 import openpyxl as xl
 from argparser import VTableArgparser
 from table_variant import TableVariant
 from table_variant_reader import TableVariantReader
 from table_variant_writer import TableVariantWriter
+from table_formatter import TableFormatter
 
 
 def format_directory(input_dir, output_dir):
@@ -54,15 +56,17 @@ def format_single_file(input_file, output_file):
     # Create variant writer and output_workbook
     variant_writer = TableVariantWriter(output_file)
 
-    variant_writer.write_header()
+    variant_writer.write_header(cfg.FINAL_COLUMNS)
+
     for row in range(2, variant_reader.active_sheet.max_row + 1):
-        # Read in table_variant
+        # Read
         table_variant = variant_reader.read_variant(row)
-        # Format using variant_writer
-        formatted_table_variant = variant_writer.get_formatted(table_variant)
-        print(formatted_table_variant)
-        # Write variant into the desired row
-        # variant_writer.write(formatted_table_variant, row)
+        # Set file info
+        table_variant.set_file_info(output_file + " [ row " + str(row) + " ]")
+        # Format
+        formatted_variant = TableFormatter.format(table_variant)
+        # Write
+        variant_writer.write_data_row(formatted_variant, row)
 
     # Save output file
     variant_writer.save()
@@ -73,7 +77,7 @@ def main():
     # Get VTable args choose mode and run functions accordingly
     args = VTableArgparser("python3 clc_vtable.py").fill().parseAsVTableArgs()
 
-    if (args.format_mode):
+    if args.format_mode:
         input_dir = args.input_file_or_directory
         output_dir = args.output_file_or_directory
 

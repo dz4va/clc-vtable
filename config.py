@@ -4,6 +4,7 @@ SNP = "SNV"
 INSERTION = "Insertion"
 DELETION = "Deletion"
 
+# Original header names
 V_REFPOS = "Reference Position"
 V_TYPE = "Variant"
 V_LENGTH = "Length"
@@ -20,21 +21,19 @@ V_ANOT = "Overlapping Annotation"
 V_CRC = "Coding Region Change"
 V_AAC = "Amino Acid Change"
 
-# columns_to_write = OrderedDict()
+# Desired columns in the final output
+F_LOCATION = "Location"
+F_VARIANT = "Variant"
+F_CODONPOS = "Codon Position"
+F_AAC = "Amino Acid Change"
+F_OA = "Overlapping Annotation"
+F_FREQ = "Frequency"
 
-# columns_to_write[V_REFPOS] = True
-# columns_to_write[V_REFPOS] = True
-# columns_to_write[V_TYPE] = True
-# columns_to_write[V_LENGTH] = True
-# columns_to_write[V_REF] = True
-# columns_to_write[V_ALLELE] = True
-# columns_to_write[V_LINKAGE] = False
-# columns_to_write[V_ZYGOSITY] = False
-# columns_to_write[V_ALCOUNT] = True
-# columns_to_write[V_COV] = True
-# columns_to_write[V_FREQ] = True
-# columns_to_write[V_FR_BAL] = True
-# columns_to_write[V_AVG_QUAL] = True
-# columns_to_write[V_ANOT] = True
-# columns_to_write[V_CRC] = True
-# columns_to_write[V_AAC] = True
+FINAL_COLUMNS = [
+    F_LOCATION,
+    F_VARIANT,
+    F_CODONPOS,
+    F_AAC,
+    F_OA,
+    F_FREQ
+]
